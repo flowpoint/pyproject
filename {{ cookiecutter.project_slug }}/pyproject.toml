@@ -1,0 +1,45 @@
+[build-system]
+requires = [
+  "setuptools",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{ cookiecutter.project_name }}"
+version = "0.0.1"
+authors = [{name="{{ cookiecutter.author }}", email="{{ cookiecutter.author_email }}"}]
+description = "{{ cookiecutter.project_description }}"
+requires-python = "{{ cookiecutter.min_python }}"
+license = {text = "{{ cookiecutter.project_license }}"}
+readme = "readme.md"
+dependencies = [
+	"click",
+	"more_itertools",
+]
+
+[project.optional-dependencies]
+test = [
+	"pytest",
+	"mypy",
+	"pep8",
+	"coverage",
+	"build",
+	]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+    ]
+markers = [
+    "incremental",
+    "unit",
+    "slow",
+    "integration"
+    ]
+testpaths = [
+    "tests"
+    ]
+
+
+[project.scripts]
+{{ cookiecutter.cli_command }} = "{{ cookiecutter.project_name }}.main:main"
